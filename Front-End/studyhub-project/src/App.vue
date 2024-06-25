@@ -1,85 +1,74 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <div id="app">
+    <nav>
+      <ul>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/account">Account</router-link></li>
+        <li><router-link to="/login">Login</router-link></li>
+        <li><router-link to="/test">Test</router-link></li>
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+      </ul>
+    </nav>
+    <router-view></router-view>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+<script>
+export default {
+  name: 'App',
+};
+</script>
+
+<style>
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+/* Style for the app container */
+#app {
+  padding: 5px 5px; /* Adjust the top padding to reduce the gap */
 }
 
+/* Ensure the nav spans full width and its contents are centered */
 nav {
+  width: 100%; /* Full width */
+  background-color: #ffffff; /* Optional: background color for the nav */
+  padding: 12px 0; /* Optional: padding for the nav */
+  box-shadow: 0 0 10px rgba(2, 123, 66, 0.836); /* Optional: shadow for the nav */
+  display: flex; /* Flexbox to align items */
+  justify-content: center; /* Center the nav contents horizontally */
+  align-items: center; /* Center vertically */
+}
+
+/* Ensure the ul element is centered */
+nav ul {
+  display: flex; /* Ensure ul is a flex container */
+  justify-content: center; /* Center the ul contents horizontally */
+  list-style-type: none;
+  padding: 0;
+  margin: 0; /* Remove default margin */
   width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+/* Style for the li elements */
+nav li {
+  margin-right: 20px; /* Space between the items */
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+nav li:last-child {
+  margin-right: 0; /* Remove margin on the last item */
 }
 
+/* Style for the anchor elements */
 nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+  text-decoration: none;
+  color: #075c44;
 }
 
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+nav a:hover {
+  text-decoration: underline;
 }
 </style>
