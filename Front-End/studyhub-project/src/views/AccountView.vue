@@ -12,13 +12,17 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Role</th>
+                <th>Note</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="todo in todos" :key="todo.id">
-                <td>{{ todo.id }}</td>
-                <td>{{ todo.name }}</td>
-                <td>{{ todo.email }}</td>
+              <tr v-for="user in users" :key="user.id">
+                <td>{{ user.id }}</td>
+                <td>{{ user.fullName }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td></td>
               </tr>
             </tbody>
           </table>
@@ -34,20 +38,20 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      todos: []
+      users: []
     };
   },
   mounted() {
-    this.fetchTodos();
+    this.fetchUsers();
   },
   methods: {
-    fetchTodos() {
+    fetchUsers() {
       axios.get('http://localhost:8080/user/get-all')
         .then(response => {
-          this.todos = response.data;
+          this.users = response.data;
         })
         .catch(error => {
-          console.error('Error fetching todos:', error);
+          console.error('Error fetching users:', error);
         });
     }
   }

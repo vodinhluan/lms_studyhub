@@ -2,23 +2,21 @@
   <div class="about-container">
     <section class="about">
       <div class="content">
-        <h1>About User</h1>
+        <h1>CLASS</h1>
         <div>
-          <h2>List User</h2>
+          <h2>List all class</h2>
           <!-- Thay đổi từ danh sách thành bảng -->
           <table>
             <thead>
               <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Email</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="todo in todos" :key="todo.id">
                 <td>{{ todo.id }}</td>
                 <td>{{ todo.name }}</td>
-                <td>{{ todo.email }}</td>
               </tr>
             </tbody>
           </table>
