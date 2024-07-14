@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
-
+import CreateAccountView from '../views/CreateAccoutView.vue';
 const routes = [
   {
     path: '/',
@@ -11,9 +11,6 @@ const routes = [
   {
     path: '/account',
     name: 'account',
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('../views/AccountView.vue'),
     meta: { showNav: true }
   },
@@ -26,12 +23,16 @@ const routes = [
   {
     path: '/test',
     name: 'test',
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('../views/TestView.vue'),
     meta: { showNav: true }
+  },
+  {
+    path: '/createaccount',
+    name: 'createaccount',
+    component: CreateAccountView,
+    meta: { showNav: true }
   }
+
 ];
 
 const router = createRouter({

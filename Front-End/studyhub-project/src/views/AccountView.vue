@@ -4,22 +4,23 @@
       <div class="content">
         <h1>About Test User</h1>
         <div>
+          <router-link to="/createaccount">Create</router-link>
           <h2>List User</h2>
           <!-- Thay đổi từ danh sách thành bảng -->
           <table>
             <thead>
               <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>Username</th>
                 <th>Email</th>
                 <th>Role</th>
-                <th>Note</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="user in users" :key="user.id">
                 <td>{{ user.id }}</td>
-                <td>{{ user.fullName }}</td>
+                <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.role }}</td>
                 <td></td>
@@ -89,7 +90,7 @@ body {
 }
 
 /* Styling for headings */
-h1, h2 {
+h1, h2, h3 {
   color: #087129; /* Darker text color */
   margin-bottom: 20px; /* Space below headings */
 }
