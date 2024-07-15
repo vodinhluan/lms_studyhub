@@ -49,6 +49,32 @@ export default {
     };
   },
   methods: {
+    async validateUsernameAndEmail() {
+      const toast = useToast();
+      try {
+        const usernameResponse = await axios.get(`http://localhost:8080/user/username/exists/${encodeURIComponent(this.user.username)}`);
+        const usernameExists = usernameResponse.data;
+
+        if (usernameExists) {
+          toast.error('Username này đã tồn tại');
+        }
+
+        const emailResponse = await axios.get(`http://localhost:8080/user/email/exists/${encodeURIComponent(this.user.email)}`);
+        const emailExists = emailResponse.data;
+
+        if (emailExists) {
+          toast.error('Email này đã tồn tại');
+        }
+
+        return !usernameExists && !emailExists;
+
+      } catch (error) {
+        console.error('Error checking existence:', error);
+        toast.error('Lỗi kiểm tra sự tồn tại');
+        return false;
+      }
+    },
+
     async createAccount() {
       const toast = useToast();
 
@@ -64,21 +90,29 @@ export default {
       }
 
       if (!this.validatePassword(this.user.password)) {
-        toast.error('Password ít nhất có 8 ký tự bao gồm các ký tự đặc biệt');
+        toast.error('Password ít nhất có 6 ký tự bao gồm các ký tự đặc biệt');
         return;
       }
 
+      // Check username and email existence
+      const isInValid = await this.validateUsernameAndEmail();
+      if (!isInValid) {
+        return;
+      }
 
       try {
         const response = await axios.post('http://localhost:8080/user/create', this.user);
-        toast.success('Tạo account thành công!');
-        console.log('User created:', response.data);
 
+        if (response.status === 200 || response.status === 201) {
+          toast.success('Tạo Tài Khoản Thành Công');
+        } else {
+          toast.error('Tạo Tài Khoản Thất Bại');
+        }
       } catch (error) {
-        toast.error('Tạo account thất bại: ' + error.response.data.message);
-        console.error('Error creating user:', error);
+        toast.error('Xảy ra lỗi trong quá trình tạo tài khoản');
       }
     },
+    
     validateUserName(username) {
       const re = /^[a-z]+$/;
       return re.test(username);
@@ -96,6 +130,7 @@ export default {
   }
 };
 </script>
+
 
 <style>
 * {
