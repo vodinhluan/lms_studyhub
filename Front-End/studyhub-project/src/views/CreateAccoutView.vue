@@ -51,6 +51,24 @@ export default {
   methods: {
     async createAccount() {
       const toast = useToast();
+
+      // Validation checks
+      if (!this.validateUserName(this.user.username)) {
+        toast.error('Username gồm các ký tự viết thường');
+        return;
+      }
+
+      if (!this.validateEmail(this.user.email)) {
+        toast.error('Email không hợp lệ');
+        return;
+      }
+
+      if (!this.validatePassword(this.user.password)) {
+        toast.error('Password ít nhất có 8 ký tự bao gồm các ký tự đặc biệt');
+        return;
+      }
+
+
       try {
         const response = await axios.post('http://localhost:8080/user/create', this.user);
         toast.success('Tạo account thành công!');
@@ -60,6 +78,20 @@ export default {
         toast.error('Tạo account thất bại: ' + error.response.data.message);
         console.error('Error creating user:', error);
       }
+    },
+    validateUserName(username) {
+      const re = /^[a-z]+$/;
+      return re.test(username);
+    },
+
+    validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    },
+
+    validatePassword(password) {
+      const re = /^(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/;
+      return re.test(password);
     }
   }
 };
