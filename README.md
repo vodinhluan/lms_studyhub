@@ -13,3 +13,11 @@ git clone https://github.com/vodinhluan/lms_studyhub.git
 # Set up Front End
 npm install  
 npm run dev  
+  
+# Vue Toastification 
+npm install --save vue-toastification@next  
+
+
+
+   
+  

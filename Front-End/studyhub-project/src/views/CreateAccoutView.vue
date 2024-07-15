@@ -4,25 +4,25 @@
       <div class="content">
         <router-link to="/account">Back</router-link>
         <h1>CREATE ACCOUNT</h1>
-        <form id="createAccountForm" method="post">
+        <form @submit.prevent="createAccount">
           <label for="username">User Name</label>
-          <input type="text" id="username" placeholder="Enter your username" required>
+          <input type="text" v-model="user.username" id="username" placeholder="Enter your username" required>
           
           <label for="password">Password</label>
-          <input type="password" id="password" placeholder="Enter your password" required>
+          <input type="password" v-model="user.password" id="password" placeholder="Enter your password" required>
           
           <label for="email">Email</label>
-          <input type="email" id="email" placeholder="Enter your email" required>
+          <input type="email" v-model="user.email" id="email" placeholder="Enter your email" required>
           
           <label for="fullname">Full Name</label>
-          <input type="text" id="fullname" placeholder="Enter your fullname" required>
+          <input type="text" v-model="user.fullName" id="fullname" placeholder="Enter your fullname" required>
           
           <label for="role">Role</label>
-          <select id="role" required>
+          <select v-model="user.role" required>
             <option value="" disabled selected>Select role</option>
-            <option value="admin">Admin</option>
-            <option value="student">Student</option>
-            <option value="teacher">Teacher</option>
+            <option value="Admin">Admin</option>
+            <option value="Teacher">Teacher</option>
+            <option value="Student">Student</option>
           </select>
           
           <button type="submit">Create Account</button>
@@ -31,6 +31,39 @@
     </section>
   </div>
 </template>
+
+<script>
+import axios from 'axios';
+import { useToast } from "vue-toastification";
+
+export default {
+  data() {
+    return {
+      user: {
+        username: '',
+        password: '',
+        email: '',
+        fullName: '',
+        role: ''
+      }
+    };
+  },
+  methods: {
+    async createAccount() {
+      const toast = useToast();
+      try {
+        const response = await axios.post('http://localhost:8080/user/create', this.user);
+        toast.success('Tạo account thành công!');
+        console.log('User created:', response.data);
+
+      } catch (error) {
+        toast.error('Tạo account thất bại: ' + error.response.data.message);
+        console.error('Error creating user:', error);
+      }
+    }
+  }
+};
+</script>
 
 <style>
 * {

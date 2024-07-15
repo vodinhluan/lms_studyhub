@@ -80,6 +80,10 @@ body {
   padding: 20px; /* Padding around the content */
 }
 
+td {
+  color: black;
+}
+
 .about {
   background-color: #ffffff; /* White background for the about section */
   padding: 40px; /* Padding around the about content */
