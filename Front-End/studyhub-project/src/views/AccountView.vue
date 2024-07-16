@@ -6,7 +6,6 @@
         <div>
           <router-link to="/createaccount">Create</router-link>
           <h2>List User</h2>
-          <!-- Thay đổi từ danh sách thành bảng -->
           <table>
             <thead>
               <tr>
@@ -23,7 +22,12 @@
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.role }}</td>
-                <td></td>
+                <td>
+                  <button @click="detailUser(user.id)">Detail</button>
+                  <button @click="deleteUser(user.id)" style="margin-left: 5px; background-color:red">
+                    Delete
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -35,6 +39,7 @@
 
 <script>
 import axios from 'axios';
+import { useToast } from "vue-toastification";
 
 export default {
   data() {
@@ -54,6 +59,31 @@ export default {
         .catch(error => {
           console.error('Error fetching users:', error);
         });
+    },
+    async detailUser(userId) {
+      console.log("Detail User");
+      console.log("User ID = ", userId);
+
+    },
+
+    async deleteUser(userId) {
+      const toast = useToast(); 
+      console.log("User ID = ", userId);
+      try {
+        const response = await axios.delete(`http://localhost:8080/user/delete/${userId}`);
+        if (response.status === 204) {
+          toast.success('Xóa user thành công'); 
+          this.fetchUsers(); 
+        } else {
+          toast.error('Xóa user thất bại');
+        }
+      } catch (error) {
+        toast.error('Xảy ra lỗi trong quá trình xóa user'); 
+        console.error("Error deleting user:", error); 
+      }
+    },
+    viewDetails(userId) {
+      // Implement the detail view logic here
     }
   }
 };

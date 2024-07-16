@@ -29,4 +29,12 @@ public class UserService {
 	public boolean emailExists(String email) {
 		return userRepo.existsByEmail(email);
 	}
+	
+	public void deleteUser(Integer userId) {
+	    if (userRepo.existsById(userId)) { 
+	        userRepo.deleteById(userId);
+	    } else {
+	        throw new IllegalArgumentException("User not found");
+	    }
+	}
 }
