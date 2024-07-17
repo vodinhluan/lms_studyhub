@@ -16,6 +16,10 @@ npm run dev
   
 # Vue Toastification 
 npm install --save vue-toastification@next  
+  
+# vue-sweetalert2  
+npm install sweetalert2  
+ 
 
 
 

@@ -26,7 +26,7 @@
                   <button class="detail-button">
                     <router-link :to="`/detail/${user.id}`">Detail</router-link>
                   </button>
-                  <button class="delete-button" @click="deleteUser(user.id)">
+                  <button class="delete-button" @click="confirmDelete(user.id)">
                     Delete
                   </button>
                 </td>
@@ -42,6 +42,8 @@
 <script>
 import axios from 'axios';
 import { useToast } from "vue-toastification";
+import Swal from 'sweetalert2';
+
 
 export default {
   data() {
@@ -63,10 +65,28 @@ export default {
         });
     },
     
+    confirmDelete(userId) {
+      Swal.fire({
+        title: 'Bạn có chắc chắn muốn xóa?',
+        text: "Bạn sẽ không thể hoàn tác điều này!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Xóa!',
+        cancelButtonText: 'Hủy'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.deleteUser(userId);
+        }
+      });
+    },
 
     async deleteUser(userId) {
       const toast = useToast(); 
       console.log("User ID = ", userId);
+      toast.apply
+
       try {
         const response = await axios.delete(`http://localhost:8080/user/delete/${userId}`);
         if (response.status === 204) {
