@@ -1,7 +1,5 @@
-<!-- src/App.vue -->
 <template>
   <div id="app">
-    <!-- Conditionally render the navigation menu based on the current route -->
     <nav v-if="showNav">
       <ul>
         <li><router-link to="/home">Home</router-link></li>
@@ -28,7 +26,7 @@ export default {
 
     const handleLogout = () => {
       alert('Bạn có chắc muốn đăng xuất khỏi tài khoản?');
-      router.push('/'); // Navigate to the login view
+      router.push('/'); 
     };
 
     return { showNav, handleLogout };
@@ -37,7 +35,6 @@ export default {
 </script>
 
 <style>
-/* Your existing styles */
 * {
   margin: 0;
   padding: 0;

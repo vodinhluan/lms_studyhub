@@ -1,10 +1,9 @@
 package com.studyhub.service;
 
 import java.util.List;
-
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.studyhub.model.User;
 import com.studyhub.repository.UserRepository;
 
@@ -36,5 +35,13 @@ public class UserService {
 	    } else {
 	        throw new IllegalArgumentException("User not found");
 	    }
+	}
+	
+	public Optional<User> findUserById(Integer userId) {
+		return userRepo.findById(userId);
+	}
+	
+	public void saveUser (User user) {
+		userRepo.save(user);
 	}
 }
