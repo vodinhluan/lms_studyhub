@@ -37,10 +37,12 @@ export default {
           username: this.username,
           password: this.password
         });
-        
-        const { jwt } = response.data;
+        const { jwt, role } = response.data;
 
         localStorage.setItem('token', jwt);
+        localStorage.setItem('role', role);
+
+        this.$router.push('/home');
 
         localStorage.setItem('loginMessage', 'Đăng nhập thành công!');
 

@@ -4,7 +4,7 @@
       <ul>
         <li><router-link to="/home">Home</router-link></li>
         <li><router-link to="/account">Account</router-link></li>
-        <li><router-link to="/test">Test</router-link></li>
+        <li><router-link to="/class">Class</router-link></li>
         <li><a href="#" @click.prevent="confirmLogout">Logout</a></li>
       </ul>
     </nav>
@@ -16,6 +16,7 @@
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Swal from 'sweetalert2';
+
 export default {
   name: 'App',
   setup() {
@@ -32,10 +33,10 @@ export default {
         showCancelButton: false,
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'Đăng xuất',
-        
       }).then((result) => {
         if (result.isConfirmed) {
-          router.push('/');
+          localStorage.removeItem('token'); 
+          router.push('/'); 
         }
       });
     };
@@ -43,6 +44,7 @@ export default {
     return { showNav, confirmLogout };
   }
 };
+
 </script>
 <style>
 * {

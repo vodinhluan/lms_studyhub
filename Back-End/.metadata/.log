@@ -6431,3 +6431,66 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 13:57:32.743
 !MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 14:14:38.730
+!MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 14:14:55.482
+!MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 14:16:51.077
+!MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 14:17:26.141
+!MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 14:28:00.616
+!MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 14:28:54.474
+!MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.eclipse.lsp4e 2 0 2024-07-27 14:46:15.257
+!MESSAGE Javadoc unavailable. Failed to obtain it.
+!STACK 0
+java.lang.InterruptedException
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(CompletableFuture.java:386)
+	at java.base/java.util.concurrent.CompletableFuture.get(CompletableFuture.java:2096)
+	at org.eclipse.lsp4e.jdt.LSJavaHoverProvider.getHoverInfo2(LSJavaHoverProvider.java:65)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:163)
+	at org.eclipse.jdt.internal.ui.text.java.hover.BestMatchHover.getHoverInfo2(BestMatchHover.java:130)
+	at org.eclipse.jdt.internal.ui.text.java.hover.JavaEditorTextHoverProxy.getHoverInfo2(JavaEditorTextHoverProxy.java:89)
+	at org.eclipse.jface.text.TextViewerHoverManager$1.run(TextViewerHoverManager.java:155)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 14:46:21.778
+!MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 14:47:48.982
+!MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 15:29:07.863
+!MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 15:35:02.773
+!MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 15:35:44.367
+!MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 15:36:14.793
+!MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 15:36:29.311
+!MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 15:37:48.170
+!MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 15:40:07.706
+!MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 15:42:52.518
+!MESSAGE Classpath changed for project: StudyHub
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2024-07-27 15:43:14.797
+!MESSAGE Classpath changed for project: StudyHub

@@ -42,6 +42,12 @@ public class AuthController {
 
         final String jwt = jwtUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+       
+        String role = userDetails.getAuthorities().stream()
+                                .findFirst()
+                                .map(auth -> auth.getAuthority())
+                                .orElse("ROLE_USER");
+
+        return ResponseEntity.ok(new AuthenticationResponse(jwt, role));
     }
 }
