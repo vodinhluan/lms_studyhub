@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import CreateAccountView from '../views/CreateAccoutView.vue';
+import AccountDetail from '../components/AccountDetail.vue';
+
 const routes = [
   {
     path: '/',
@@ -30,6 +32,13 @@ const routes = [
     path: '/createaccount',
     name: 'createaccount',
     component: CreateAccountView,
+    meta: { showNav: true }
+  },
+
+  {
+    path: '/detail/:id',
+    name: 'User Detail',
+    component: AccountDetail,
     meta: { showNav: true }
   }
 

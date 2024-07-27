@@ -4,7 +4,6 @@ public class AuthenticationRequest {
     private String username;
     private String password;
 
-    // default constructor for JSON Parsing
     public AuthenticationRequest() {
     }
 

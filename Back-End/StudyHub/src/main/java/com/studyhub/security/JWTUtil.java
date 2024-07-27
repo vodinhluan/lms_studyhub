@@ -14,8 +14,7 @@ import java.util.function.Function;
 
 @Component
 public class JWTUtil {
-    private String secret = "secret_key"; // You should use a more secure key
-
+    private String secret = "secret_key"; 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }

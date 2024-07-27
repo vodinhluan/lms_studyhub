@@ -1,13 +1,11 @@
-<!-- src/App.vue -->
 <template>
   <div id="app">
-    <!-- Conditionally render the navigation menu based on the current route -->
     <nav v-if="showNav">
       <ul>
         <li><router-link to="/home">Home</router-link></li>
         <li><router-link to="/account">Account</router-link></li>
         <li><router-link to="/test">Test</router-link></li>
-        <li><a href="#" @click.prevent="handleLogout">Logout</a></li>
+        <li><a href="#" @click.prevent="confirmLogout">Logout</a></li>
       </ul>
     </nav>
     <router-view></router-view>
@@ -17,36 +15,36 @@
 <script>
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { useToast } from 'vue-toastification'; // Import the toast
-
+import Swal from 'sweetalert2';
 export default {
   name: 'App',
   setup() {
     const route = useRoute();
     const router = useRouter();
-    const toast = useToast(); // Initialize the toast
 
     const showNav = computed(() => route.meta.showNav);
 
-    const handleLogout = () => {
-      toast.info('Bạn có chắc muốn đăng xuất khỏi tài khoản?', {
-        timeout: 5000,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        onClick: () => {
-          // Perform the logout logic here, such as clearing user data
-          router.push('/'); // Navigate to the login view
-        },
+    const confirmLogout = () => {
+      Swal.fire({
+        title: 'Bạn có chắc chắn muốn đăng xuất?',
+        text: 'Bạn sẽ bị đăng xuất khỏi tài khoản!',
+        icon: 'warning',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Đăng xuất',
+        
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push('/');
+        }
       });
     };
 
-    return { showNav, handleLogout };
+    return { showNav, confirmLogout };
   }
 };
 </script>
 <style>
-/* Your existing styles */
 * {
   margin: 0;
   padding: 0;

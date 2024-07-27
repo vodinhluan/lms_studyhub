@@ -5,7 +5,6 @@
         <h1>CLASS</h1>
         <div>
           <h2>List all class</h2>
-          <!-- Thay đổi từ danh sách thành bảng -->
           <table>
             <thead>
               <tr>
@@ -53,7 +52,6 @@ export default {
 </script>
 
 <style>
-/* General reset for padding and margin */
 * {
   margin: 0;
   padding: 0;
@@ -62,55 +60,53 @@ export default {
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #5eb7b3; /* Light background for the whole container */
+  background-color: #5eb7b3; 
 }
 
 .about-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh; /* Full height */
-  padding: 20px; /* Padding around the content */
+  min-height: 100vh; 
+  padding: 20px; 
 }
 
 .about {
-  background-color: #ffffff; /* White background for the about section */
-  padding: 40px; /* Padding around the about content */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  background-color: #ffffff; 
+  padding: 40px; 
+  border-radius: 10px; 
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
   width: 100%;
-  max-width: 800px; /* Max width for the about section */
+  max-width: 800px; 
 }
 
-/* Styling for headings */
 h1, h2 {
-  color: #087129; /* Darker text color */
-  margin-bottom: 20px; /* Space below headings */
+  color: #087129; 
+  margin-bottom: 20px; 
 }
 
-/* Table Styles */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px; /* Space below the table */
+  margin-bottom: 20px; 
 }
 
 th, td {
-  padding: 12px; /* Padding for table cells */
-  border: 1px solid #ddd; /* Light border around cells */
-  text-align: left; /* Align text to the left */
+  padding: 12px; 
+  border: 1px solid #ddd; 
+  text-align: left; 
 }
 
 th {
-  background-color: #f4f4f4; /* Light grey background for header cells */
-  color: #087129; /* Dark text color for headers */
+  background-color: #f4f4f4; 
+  color: #087129;
 }
 
 tbody tr:nth-child(odd) {
-  background-color: #f9f9f9; /* Light grey background for odd rows */
+  background-color: #f9f9f9; 
 }
 
-/* Media query for larger screens */
+
 @media (min-width: 1024px) {
   .about {
     min-height: 30vh;

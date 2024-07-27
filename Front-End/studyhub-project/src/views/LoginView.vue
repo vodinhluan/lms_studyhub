@@ -19,7 +19,7 @@
 </template>
 <script>
 import axios from 'axios';
-import { useToast } from 'vue-toastification'; // Nếu bạn đang sử dụng thư viện toast
+import { useToast } from 'vue-toastification'; 
 
 export default {
   data() {
@@ -40,13 +40,10 @@ export default {
         
         const { jwt } = response.data;
 
-        // Lưu JWT vào localStorage
         localStorage.setItem('token', jwt);
 
-        // Lưu thông báo đăng nhập thành công vào localStorage
         localStorage.setItem('loginMessage', 'Đăng nhập thành công!');
 
-        // Chuyển hướng đến trang chính
         this.$router.push('/home');
       } catch (error) {
         console.error('Login failed:', error);
@@ -58,7 +55,6 @@ export default {
 </script>
 
 <style>
-/* Your existing styles */
 * {
   margin: 0;
   padding: 0;

@@ -25,9 +25,6 @@ import com.studyhub.repository.UserRepository;
 @EnableWebSecurity
 public class WebSecurityConfig {
 	@Autowired
-	private UserRepository userRepo;
-
-	@Autowired
 	private JWTRequestFilter jwtRequestFilter;
 
 	@Bean
