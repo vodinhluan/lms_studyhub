@@ -17,25 +17,34 @@
 <script>
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { useToast } from 'vue-toastification'; // Import the toast
 
 export default {
   name: 'App',
   setup() {
     const route = useRoute();
     const router = useRouter();
-    
+    const toast = useToast(); // Initialize the toast
+
     const showNav = computed(() => route.meta.showNav);
 
     const handleLogout = () => {
-      alert('Bạn có chắc muốn đăng xuất khỏi tài khoản?');
-      router.push('/'); // Navigate to the login view
+      toast.info('Bạn có chắc muốn đăng xuất khỏi tài khoản?', {
+        timeout: 5000,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        onClick: () => {
+          // Perform the logout logic here, such as clearing user data
+          router.push('/'); // Navigate to the login view
+        },
+      });
     };
 
     return { showNav, handleLogout };
   }
 };
 </script>
-
 <style>
 /* Your existing styles */
 * {

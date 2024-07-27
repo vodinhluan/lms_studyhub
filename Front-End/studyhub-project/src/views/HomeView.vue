@@ -26,7 +26,25 @@
     </section>
   </div>
 </template>
+<script>
+import { onMounted } from 'vue';
+import { useToast } from 'vue-toastification';
 
+export default {
+  setup() {
+    const toast = useToast();
+
+    onMounted(() => {
+      // Check if loginMessage is present in localStorage and show toast
+      const message = localStorage.getItem('loginMessage');
+      if (message) {
+        toast.success(message);
+        localStorage.removeItem('loginMessage'); // Remove the message after showing
+      }
+    });
+  }
+};
+</script>
 <style>
 /* General reset for padding and margin */
 * {

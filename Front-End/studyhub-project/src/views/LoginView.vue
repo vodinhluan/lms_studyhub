@@ -1,25 +1,26 @@
-<!-- src/views/LoginView.vue -->
 <template>
   <div class="login-container">
     <div class="login">
       <h1>LOGIN</h1>
       <form id="loginForm" @submit.prevent="handleLogin">
         <label for="username">Username</label>
-        <input type="text" id="username" v-model="username" placeholder="Enter your username">
+        <input type="text" id="username" v-model="username" placeholder="Enter your username" required>
         <label for="password">Password</label>
-        <input type="password" id="password" v-model="password" placeholder="Enter your password">
+        <input type="password" id="password" v-model="password" placeholder="Enter your password" required>
         <button type="submit">Login</button>
         <div class="remember-me">
           <input type="checkbox" id="remember" v-model="remember">
           <label for="remember">Remember me</label>
         </div>
         <h3>Click here if you <a href="#">Forgot Password</a></h3>
-      </form>     
+      </form>
     </div>
   </div>
 </template>
-
 <script>
+import axios from 'axios';
+import { useToast } from 'vue-toastification'; // Nếu bạn đang sử dụng thư viện toast
+
 export default {
   data() {
     return {
@@ -29,9 +30,28 @@ export default {
     };
   },
   methods: {
-    handleLogin() {
-      // Redirect to the home page after login
-      this.$router.push('/home');
+    async handleLogin() {
+      const toast = useToast();
+      try {
+        const response = await axios.post('http://localhost:8080/authenticate', {
+          username: this.username,
+          password: this.password
+        });
+        
+        const { jwt } = response.data;
+
+        // Lưu JWT vào localStorage
+        localStorage.setItem('token', jwt);
+
+        // Lưu thông báo đăng nhập thành công vào localStorage
+        localStorage.setItem('loginMessage', 'Đăng nhập thành công!');
+
+        // Chuyển hướng đến trang chính
+        this.$router.push('/home');
+      } catch (error) {
+        console.error('Login failed:', error);
+        toast.error('Đăng nhập không thành công. Vui lòng kiểm tra lại thông tin.');
+      }
     }
   }
 };
