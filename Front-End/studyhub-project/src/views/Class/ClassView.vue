@@ -24,7 +24,7 @@
                 <td>{{ lop.code }}</td>
                 <td>
                   <button class="detail-button">
-                    Detail
+                    <router-link :to="`/class-detail/${lop.id}`">Detail</router-link>
                   </button>
                   <button class="delete-button" @click="confirmDelete(lop.id)">
                     Delete

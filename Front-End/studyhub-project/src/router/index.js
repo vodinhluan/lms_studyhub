@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue';
 import CreateAccountView from '../views/Account/CreateAccoutView.vue';
 import CreateClassView from '../views/Class/CreateClassView.vue';
 import AccountDetail from '../components/AccountDetail.vue';
+import ClassDetail from '../components/ClassDetail.vue';
 import Swal from 'sweetalert2';
 const routes = [
   {
@@ -46,6 +47,12 @@ const routes = [
     name: 'User Detail',
     component: AccountDetail,
     meta: { showNav: true, requiresAuth: true ,role: 'Admin'}
+  },
+  {
+    path: '/class-detail/:id',
+    name: 'Class Detail',
+    component: ClassDetail,
+    meta: { showNav: true, requiresAuth: true }
   }
 
 ];

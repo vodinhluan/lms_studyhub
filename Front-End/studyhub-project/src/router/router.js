@@ -3,7 +3,8 @@ import Home from './components/Home.vue';
 import Login from './components/Login.vue';
 import AccountDetail from './components/AccountDetail.vue';
 import CreateAccount from './components/CreateAccount.vue'; 
-import CreateClass from '../views/Class/CreateClassView.vue';
+import CreateClass from './components/CreateClass.vue';
+import ClassDetail from './components/ClassDetail.vue';
 
 const routes = [
   { path: '/home', component: Home, meta: { requiresAuth: true } },
@@ -13,6 +14,7 @@ const routes = [
   { path: '/createaccount', component: CreateAccount, meta: { requiresAuth: true } },
   { path: '/detail/:userId', component: AccountDetail, meta: { requiresAuth: true } },
   { path: '/createclass', component: CreateClass, meta: { requiresAuth: true } },
+  { path: '/class-detail/:classId', component: ClassDetail, meta: { requiresAuth: true } },
 ];
 
 const router = createRouter({

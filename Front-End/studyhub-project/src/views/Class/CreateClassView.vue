@@ -10,7 +10,7 @@
             
             <label for="teacher">Teacher (Select a Teacher for Class)</label>
             <select v-model="lop.teacher" id="teacher" required>
-              <option disabled selected value="">Select a teacher</option>
+              <option value="" disabled selected>Select a Teacher</option>
               <option v-for="teacher in teachers" :key="teacher.id" :value="teacher">
                 {{ teacher.username }}
               </option>
