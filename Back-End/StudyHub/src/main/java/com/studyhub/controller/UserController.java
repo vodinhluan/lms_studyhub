@@ -57,6 +57,10 @@ public class UserController {
 		         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build(); 
 		     }
 		 }
+		 @GetMapping("/user/teachers")
+		 public List<User> getTeachers() {
+		     return userService.getUsersByRole(User.Role.Teacher);
+		 }
 		 
 		 @GetMapping("/user/detail/{userId}")
 		 public ResponseEntity<User> getUserDetail(@PathVariable("userId") Integer userId) {

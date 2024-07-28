@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.studyhub.model.User;
+import com.studyhub.model.User.Role;
 import com.studyhub.repository.UserRepository;
 
 @Service
@@ -47,4 +48,8 @@ public class UserService {
 	public void saveUser (User user) {
 		userRepo.save(user);
 	}
+
+	public List<User> getUsersByRole(User.Role role) {
+    return userRepo.findByRole(role);
+}
 }

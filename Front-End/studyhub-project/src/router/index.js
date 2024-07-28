@@ -1,19 +1,20 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
-import CreateAccountView from '../views/CreateAccoutView.vue';
+import CreateAccountView from '../views/Account/CreateAccoutView.vue';
+import CreateClassView from '../views/Class/CreateClassView.vue';
 import AccountDetail from '../components/AccountDetail.vue';
 import Swal from 'sweetalert2';
 const routes = [
   {
     path: '/',
     name: 'login',
-    component: () => import('../views/LoginView.vue'),
+    component: () => import('../views/Authenticate/LoginView.vue'),
     meta: { showNav: false }
   },
   {
     path: '/account',
     name: 'account',
-    component: () => import('../views/AccountView.vue'),
+    component: () => import('../views/Account/AccountView.vue'),
     meta: { showNav: true, requiresAuth: true,role: 'Admin' }
   },
   {
@@ -25,7 +26,7 @@ const routes = [
   {
     path: '/class',
     name: 'class',
-    component: () => import('../views/ClassView.vue'),
+    component: () => import('../views/Class/ClassView.vue'),
     meta: { showNav: true, requiresAuth: true }
   },
   {
@@ -34,7 +35,12 @@ const routes = [
     component: CreateAccountView,
     meta: { showNav: true , requiresAuth: true,role: 'Admin'}
   },
-
+  {
+    path: '/createclass',
+    name: 'createclass',
+    component: CreateClassView,
+    meta: { showNav: true , requiresAuth: true}
+  },
   {
     path: '/detail/:id',
     name: 'User Detail',
