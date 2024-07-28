@@ -32,7 +32,6 @@ public class Class {
         this.code = generateRandomCode();
     }
 
-    // Getters and Setters
 
     public Integer getId() {
         return id;
