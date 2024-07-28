@@ -7,15 +7,28 @@
           <h2>List all class</h2>
           <table>
             <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
+                <tr>
+                  <th>ID</th>
+                  <th>Class name</th>
+                  <th>Teacher</th>
+                  <th>Code</th>
+                  <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="todo in todos" :key="todo.id">
-                <td>{{ todo.id }}</td>
-                <td>{{ todo.name }}</td>
+              <tr v-for="lop in classes" :key="lop.id">
+                <td>{{ lop.id }}</td>
+                <td>{{ lop.name }}</td>
+                <td>{{ lop.teacher.username }}</td>
+                <td>{{ lop.code }}</td>
+                <td>
+                  <button class="detail-button">
+                    Detail
+                  </button>
+                  <button class="delete-button" @click="confirmDelete(user.id)">
+                    Delete
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -31,32 +44,34 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      todos: []
+      classes: []
     };
   },
   mounted() {
-    this.fetchTodos();
+    this.fetchClass();
   },
   methods: {
-    fetchTodos() {
-      axios.get('http://localhost:8080/user/get-all')
+    fetchClass() {
+      axios.get('http://localhost:8080/class/get-all')
         .then(response => {
-          this.todos = response.data;
+          this.classes = response.data;
         })
         .catch(error => {
-          console.error('Error fetching todos:', error);
+          console.error('Error fetching classes:', error);
         });
     }
   }
 };
 </script>
-
 <style>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 }
+
 
 body {
   font-family: Arial, sans-serif;
@@ -71,6 +86,10 @@ body {
   padding: 20px; 
 }
 
+td {
+  color: black;
+}
+
 .about {
   background-color: #ffffff; 
   padding: 40px; 
@@ -80,32 +99,56 @@ body {
   max-width: 800px; 
 }
 
-h1, h2 {
+h1, h2, h3 {
   color: #087129; 
   margin-bottom: 20px; 
+}
+
+.detail-button {
+  background-color: lightyellow;
+  border: 2px solid black;
+
+}
+
+.delete-button {
+  margin-left: 5px;
+  color: #29ae72;
+  background-color: lightyellow;
+  border: 2px solid black;
+}
+
+.delete-button:hover {
+  margin-left: 5px;
+  color: #29ae72;
+  background-color: #cf225f !important;
+  border: 2px solid black;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px; 
+  border: 2px solid black;
+
 }
 
 th, td {
   padding: 12px; 
   border: 1px solid #ddd; 
-  text-align: left; 
+  text-align: center; 
+  border: 1px solid black;
+
 }
 
 th {
   background-color: #f4f4f4; 
-  color: #087129;
+  color: #087129; 
+  font-size: larger;
 }
 
 tbody tr:nth-child(odd) {
   background-color: #f9f9f9; 
 }
-
 
 @media (min-width: 1024px) {
   .about {

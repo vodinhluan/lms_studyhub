@@ -47,5 +47,4 @@ public class UserService {
 	public void saveUser (User user) {
 		userRepo.save(user);
 	}
-	
 }
