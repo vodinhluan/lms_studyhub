@@ -2,8 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import CreateAccountView from '../views/Account/CreateAccoutView.vue';
 import CreateClassView from '../views/Class/CreateClassView.vue';
-import AccountDetail from '../components/AccountDetail.vue';
-import ClassDetail from '../components/ClassDetail.vue';
+import AccountDetail from '../components/Account/AccountDetail.vue';
+import ClassDetail from '../components/Class/ClassDetail.vue';
 import Swal from 'sweetalert2';
 const routes = [
   {

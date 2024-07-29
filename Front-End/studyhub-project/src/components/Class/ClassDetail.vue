@@ -3,18 +3,18 @@
     <section class="detail">
       <router-link to="/class">Back</router-link>
       <h1>CHI TIẾT CLASS</h1>
-      <div v-if="lop">
+      <div v-if="classAdmin">
         <label>ID:</label>
-        <span>{{ lop.id }}</span>
+        <span>{{ classAdmin.id }}</span>
         <br>
         <label>Class Name:</label>
-        <input v-model="lop.name" type="text">
+        <input v-model="classAdmin.name" type="text">
         <br>
         <label>Teacher: </label>
-        <span>{{ lop.teacher.username }}</span>
+        <span>{{ classAdmin.teacher.username }}</span>
         <br>
         <label>Code:    </label>
-        <span>{{ lop.code }}</span>
+        <span>{{ classAdmin.code }}</span>
         <br>
         <button @click="updateClass">Sửa</button>
       </div>
@@ -32,7 +32,7 @@ import { useToast } from "vue-toastification";
 export default {
   data() {
     return {
-      lop: null
+      classAdmin: null
     };
   },
   mounted() {
@@ -43,7 +43,7 @@ export default {
     async fetchClassDetail(classId) {
       try {
         const response = await axios.get(`http://localhost:8080/class/detail/${classId}`);
-        this.lop = response.data;
+        this.classAdmin = response.data;
       } catch (error) {
         console.error('Error fetching class detail:', error);
       }
@@ -51,7 +51,7 @@ export default {
     async updateClass() {
       const toast = useToast();
       try {
-        const response = await axios.put(`http://localhost:8080/class/update/${this.lop.id}`, this.lop);
+        const response = await axios.put(`http://localhost:8080/class/update/${this.classAdmin.id}`, this.classAdmin);
         if (response.status === 200) {
           toast.success('Cập nhật thông tin lớp học thành công');
         } else {

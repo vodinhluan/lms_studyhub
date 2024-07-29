@@ -41,9 +41,9 @@ public class ClassController {
 	 }
 	 @GetMapping("/class/detail/{classId}")
 	 public ResponseEntity<Class> getClassDetail(@PathVariable("classId") Integer classId) {
-		 Optional<Class> lop = classService.getClassById(classId);
-		 if (lop.isPresent()) {
-			 return ResponseEntity.ok(lop.get());
+		 Optional<Class> classAdmin = classService.getClassById(classId);
+		 if (classAdmin.isPresent()) {
+			 return ResponseEntity.ok(classAdmin.get());
 		 } else {
 			 return ResponseEntity.notFound().build();
 		 }			 
@@ -52,9 +52,9 @@ public class ClassController {
 	 @PutMapping("/class/update/{classId}")
 	 public ResponseEntity<Class> updateClass(@PathVariable("classId") Integer classId, 
 			 @RequestBody Class updatedClass) {
-		 Optional<Class> lop = classService.getClassById(classId);
-		 if (lop.isPresent()) {
-			 Class existingClass = lop.get(); 
+		 Optional<Class> classAdmin = classService.getClassById(classId);
+		 if (classAdmin.isPresent()) {
+			 Class existingClass = classAdmin.get(); 
 			 existingClass.setName(updatedClass.getName());
 			 existingClass.setTeacher(updatedClass.getTeacher());
 			 classService.saveClass(existingClass);

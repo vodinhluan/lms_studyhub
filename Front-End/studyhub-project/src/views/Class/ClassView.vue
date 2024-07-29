@@ -17,16 +17,16 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="lop in classes" :key="lop.id">
-                <td>{{ lop.id }}</td>
-                <td>{{ lop.name }}</td>
-                <td>{{ lop.teacher.username }}</td>
-                <td>{{ lop.code }}</td>
+              <tr v-for="classAdmin in classes" :key="classAdmin.id">
+                <td>{{ classAdmin.id }}</td>
+                <td>{{ classAdmin.name }}</td>
+                <td>{{ classAdmin.teacher.username }}</td>
+                <td>{{ classAdmin.code }}</td>
                 <td>
                   <button class="detail-button">
-                    <router-link :to="`/class-detail/${lop.id}`">Detail</router-link>
+                    <router-link :to="`/class-detail/${classAdmin.id}`">Detail</router-link>
                   </button>
-                  <button class="delete-button" @click="confirmDelete(lop.id)">
+                  <button class="delete-button" @click="confirmDelete(classAdmin.id)">
                     Delete
                   </button>
                 </td>

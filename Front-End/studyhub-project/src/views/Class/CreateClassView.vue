@@ -6,10 +6,10 @@
           <h1>CREATE CLASS</h1>
           <form @submit.prevent="createClass">
             <label for="username">Class Name</label>
-            <input type="text" v-model="lop.name" id="classname" placeholder="Enter your classname" required>
+            <input type="text" v-model="classAdmin.name" id="classname" placeholder="Enter your classname" required>
             
             <label for="teacher">Teacher (Select a Teacher for Class)</label>
-            <select v-model="lop.teacher" id="teacher" required>
+            <select v-model="classAdmin.teacher" id="teacher" required>
               <option value="" disabled selected>Select a Teacher</option>
               <option v-for="teacher in teachers" :key="teacher.id" :value="teacher">
                 {{ teacher.username }}
@@ -30,7 +30,7 @@
   export default {
   data() {
     return {
-      lop: {
+      classAdmin: {
         name: '',
         teacher: null
       },
@@ -76,7 +76,7 @@
         // }
   
         try {
-          const response = await axios.post('http://localhost:8080/class/create', this.lop);
+          const response = await axios.post('http://localhost:8080/class/create', this.classAdmin);
   
           if (response.status === 200 || response.status === 201) {
             toast.success('Tạo Lớp Học Thành Công');
