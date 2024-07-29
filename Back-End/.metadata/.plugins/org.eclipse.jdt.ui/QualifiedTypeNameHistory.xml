@@ -11,4 +11,12 @@
     <fullyQualifiedTypeName name="org.springframework.security.core.Authentication"/>
     <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="com.studyhub.model.Class"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="com.studyhub.repository.ClassRepository"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="com.studyhub.service.ClassService"/>
+    <fullyQualifiedTypeName name="com.studyhub.repository.UserRepository"/>
+    <fullyQualifiedTypeName name="com.studyhub.model.User"/>
 </qualifiedTypeNameHistroy>

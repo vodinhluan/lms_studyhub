@@ -28,7 +28,7 @@ const routes = [
     path: '/class',
     name: 'class',
     component: () => import('../views/Class/ClassView.vue'),
-    meta: { showNav: true, requiresAuth: true }
+    meta: { showNav: true, requiresAuth: true ,role: 'Admin'}
   },
   {
     path: '/createaccount',
@@ -40,7 +40,7 @@ const routes = [
     path: '/createclass',
     name: 'createclass',
     component: CreateClassView,
-    meta: { showNav: true , requiresAuth: true}
+    meta: { showNav: true , requiresAuth: true,role: 'Admin'}
   },
   {
     path: '/detail/:id',
@@ -52,7 +52,7 @@ const routes = [
     path: '/class-detail/:id',
     name: 'Class Detail',
     component: ClassDetail,
-    meta: { showNav: true, requiresAuth: true }
+    meta: { showNav: true, requiresAuth: true,role: 'Admin' }
   }
 
 ];
