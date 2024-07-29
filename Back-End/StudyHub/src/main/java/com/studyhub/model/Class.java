@@ -2,7 +2,7 @@ package com.studyhub.model;
 
 import jakarta.persistence.*;
 import java.security.SecureRandom;
-
+import java.util.Set;
 
 @Entity
 @Table(name = "Class")
@@ -22,6 +22,14 @@ public class Class {
     @Column(nullable = false, length = 50)
     private String code;
 
+    @ManyToMany
+    @JoinTable(
+        name = "class_student",
+        joinColumns = @JoinColumn(name = "class_id"),
+        inverseJoinColumns = @JoinColumn(name = "student_id")
+    )
+    private Set<User> students;
+
     public Class() {
         this.code = generateRandomCode();
     }
@@ -31,7 +39,6 @@ public class Class {
         this.teacher = teacher;
         this.code = generateRandomCode();
     }
-
 
     public Integer getId() {
         return id;
@@ -63,6 +70,14 @@ public class Class {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Set<User> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<User> students) {
+        this.students = students;
     }
 
     private String generateRandomCode() {

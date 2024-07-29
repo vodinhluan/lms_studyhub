@@ -6,14 +6,17 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.studyhub.model.AuthenticationRequest;
 import com.studyhub.model.AuthenticationResponse;
+import com.studyhub.model.User;
 import com.studyhub.security.JWTUtil;
 import com.studyhub.service.CustomUserDetailsService;
+import com.studyhub.service.UserService;
 
 @RestController
 public class AuthController {
@@ -23,7 +26,8 @@ public class AuthController {
 
     @Autowired
     private CustomUserDetailsService userDetailsService;
-
+    @Autowired
+    private UserService userService;
     @Autowired
     private JWTUtil jwtUtil;
 
@@ -43,11 +47,11 @@ public class AuthController {
         final String jwt = jwtUtil.generateToken(userDetails);
 
        
-        String role = userDetails.getAuthorities().stream()
-                                .findFirst()
-                                .map(auth -> auth.getAuthority())
-                                .orElse("ROLE_USER");
+        User user = userService.findByUsername(authenticationRequest.getUsername());
+        String role = user.getRole().name();
+        String fullName = user.getFullName();
 
-        return ResponseEntity.ok(new AuthenticationResponse(jwt, role));
+        return ResponseEntity.ok(new AuthenticationResponse(jwt, role, fullName));
+
     }
 }

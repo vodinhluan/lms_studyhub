@@ -4,8 +4,12 @@
       <ul>
         <li><router-link to="/home">Home</router-link></li>
         <li><router-link to="/account">Account</router-link></li>
-        <li><router-link to="/class">Class</router-link></li>
+        <li><router-link to="/class">Assignment</router-link></li>
+        <li><router-link to="/myclass">My Class</router-link></li>
         <li><a href="#" @click.prevent="confirmLogout">Logout</a></li>
+        <li v-if="userInfo.fullName">
+          <span>Hello, {{ userInfo.fullName }} ({{ userInfo.role }})</span>
+        </li>
       </ul>
     </nav>
     <router-view></router-view>
@@ -13,7 +17,7 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Swal from 'sweetalert2';
 
@@ -24,6 +28,16 @@ export default {
     const router = useRouter();
 
     const showNav = computed(() => route.meta.showNav);
+
+    const userInfo = ref({
+      fullName: localStorage.getItem('fullName'),
+      role: localStorage.getItem('role')
+    });
+
+    const updateUserInfo = () => {
+      userInfo.value.fullName = localStorage.getItem('fullName');
+      userInfo.value.role = localStorage.getItem('role');
+    };
 
     const confirmLogout = () => {
       Swal.fire({
@@ -36,16 +50,22 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           localStorage.removeItem('token'); 
+          localStorage.removeItem('fullName');
+          localStorage.removeItem('role');
+          updateUserInfo(); // Update user info on logout
           router.push('/'); 
         }
       });
     };
 
-    return { showNav, confirmLogout };
+    // Initialize user info
+    updateUserInfo();
+
+    return { showNav, userInfo, confirmLogout };
   }
 };
-
 </script>
+
 <style>
 * {
   margin: 0;
@@ -91,5 +111,10 @@ nav a {
 
 nav a:hover {
   text-decoration: underline;
+}
+
+nav span {
+  color: #075c44;
+  font-weight: bold;
 }
 </style>

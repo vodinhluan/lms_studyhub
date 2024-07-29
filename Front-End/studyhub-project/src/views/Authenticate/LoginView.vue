@@ -31,27 +31,28 @@ export default {
   },
   methods: {
     async handleLogin() {
-      const toast = useToast();
-      try {
-        const response = await axios.post('http://localhost:8080/authenticate', {
-          username: this.username,
-          password: this.password
-        });
-        const { jwt, role } = response.data;
+  const toast = useToast();
+  try {
+    const response = await axios.post('http://localhost:8080/authenticate', {
+      username: this.username,
+      password: this.password
+    });
+    const { jwt, role } = response.data;
 
-        localStorage.setItem('token', jwt);
-        localStorage.setItem('role', role);
+    localStorage.setItem('token', jwt);
+    localStorage.setItem('role', role);
+    // Assuming you get fullName from your backend response or somewhere else
+    localStorage.setItem('fullName', 'User Full Name'); 
 
-        this.$router.push('/home');
+    this.$router.push('/home');
 
-        localStorage.setItem('loginMessage', 'Đăng nhập thành công!');
+    this.$router.push('/home');
+  } catch (error) {
+    console.error('Login failed:', error);
+    toast.error('Đăng nhập không thành công. Vui lòng kiểm tra lại thông tin.');
+  }
+}
 
-        this.$router.push('/home');
-      } catch (error) {
-        console.error('Login failed:', error);
-        toast.error('Đăng nhập không thành công. Vui lòng kiểm tra lại thông tin.');
-      }
-    }
   }
 };
 </script>

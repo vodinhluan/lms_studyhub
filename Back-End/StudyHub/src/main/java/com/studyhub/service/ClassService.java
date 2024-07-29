@@ -10,6 +10,7 @@ import com.studyhub.repository.ClassRepository;
 import com.studyhub.repository.UserRepository;
 import com.studyhub.model.Class;
 import com.studyhub.model.User;
+import com.studyhub.model.User.Role;
 @Service
 public class ClassService {
 
@@ -37,6 +38,16 @@ public class ClassService {
 
     public List<User> getTeachers() {
         return userRepository.findByRole(User.Role.Teacher);
+    }
+    public List<Class> getClassesByUser(User user) {
+        if (user.getRole() == Role.Admin) {
+            return getAllClasses();
+        } else if (user.getRole() == Role.Teacher) {
+            return classRepository.findByTeacher(user);
+        } else if (user.getRole() == Role.Student) {
+            return classRepository.findByStudentsContains(user);
+        }
+        return List.of();
     }
 
 	

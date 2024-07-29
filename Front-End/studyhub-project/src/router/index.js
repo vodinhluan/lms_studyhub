@@ -4,6 +4,8 @@ import CreateAccountView from '../views/Account/CreateAccoutView.vue';
 import CreateClassView from '../views/Class/CreateClassView.vue';
 import AccountDetail from '../components/Account/AccountDetail.vue';
 import ClassDetail from '../components/Class/ClassDetail.vue';
+import MyClassDetail from '../components/Class/MyClassDetail.vue';
+
 import Swal from 'sweetalert2';
 const routes = [
   {
@@ -53,8 +55,19 @@ const routes = [
     name: 'Class Detail',
     component: ClassDetail,
     meta: { showNav: true, requiresAuth: true,role: 'Admin' }
-  }
-
+  },
+  {
+    path: '/myclass',
+    name: 'myclass',
+    component: () => import('../views/Class/myClassView.vue'),
+    meta: { showNav: true, requiresAuth: true }
+  },
+  {
+    path: '/my-class-detail/:id',
+    name: 'My Class Detail',
+    component: MyClassDetail,
+    meta: { showNav: true, requiresAuth: true }
+  },
 ];
 
 const router = createRouter({

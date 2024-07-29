@@ -52,4 +52,9 @@ public class UserService {
 	public List<User> getUsersByRole(User.Role role) {
     return userRepo.findByRole(role);
 }
+
+	  public User findByUsername(String username) {
+	        return userRepo.findByUsername(username);
+	    }
+
 }
